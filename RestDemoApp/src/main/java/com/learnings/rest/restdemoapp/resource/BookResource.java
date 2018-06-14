@@ -12,6 +12,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -80,5 +81,21 @@ public class BookResource {
 		book.setId(id);
 		Book b = bookService.updateBook(book);
 		return Response.status(Status.OK).entity(b).build();
+	}
+	
+	@GET
+	@Path("/params/{pathParam}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String testParams(@PathParam("pathParam") String pathParam) {
+		return "Path Param "+pathParam;
+	}
+	
+	@GET
+	@Path("/params")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String testQueryParms(@QueryParam("bookId") Long id,
+			@QueryParam("title") String title,
+			@QueryParam("author") String author) {
+		return "Query Params for [BookId,Title,Author] = ["+id+","+title+","+author+"]";
 	}
 }
