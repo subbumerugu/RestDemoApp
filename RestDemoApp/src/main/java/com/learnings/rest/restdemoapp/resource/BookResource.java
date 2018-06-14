@@ -3,8 +3,11 @@ package com.learnings.rest.restdemoapp.resource;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.print.attribute.standard.Media;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -56,6 +59,15 @@ public class BookResource {
 	@Path("/{bookId}")
 	public Response deleteBook(@PathParam("bookId") Long id) {
 		Book b = bookService.deleteBook(id);
-		return Response.status(Status.OK).build();
+		return Response.status(Status.OK).entity(b).build();
+	}
+	
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addBook(Book book) {
+		Book b = bookService.addBook(book);
+		return Response.status(Status.CREATED).entity(b).build();
 	}
 }
