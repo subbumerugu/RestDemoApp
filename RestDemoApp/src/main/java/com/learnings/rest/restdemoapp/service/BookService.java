@@ -16,12 +16,12 @@ import com.learnings.rest.restdemoapp.model.Book;
 
 @ApplicationScoped
 public class BookService {
-/*	@Inject
-	Logger logger;
-*/	private Map<Long,Book> books = new HashMap<Long, Book>();
+	//@Inject
+	//Logger logger;
+	private Map<Long,Book> books = new HashMap<Long, Book>();
 	
 	public BookService() {
-//		logger.info("Book Service - Constructor");
+		//logger.info("Book Service - Constructor Logger");
 		System.out.println("Book Service Constructor");
 		 for (Long i=1L; i<=10; i++) {
 			 Book m = new Book(i,"Book Title - "+i, "Subbu-"+i);
