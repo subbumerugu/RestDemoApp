@@ -54,4 +54,11 @@ public class BookService {
 		books.put(book.getId(), book);
 		return book;
 	}
+	public Book updateBook(Book book) {
+		System.out.println("Book Service - Modify Book");
+		Book b = books.put(book.getId(),book);
+		return b;
+		
+		
+	}
 }
