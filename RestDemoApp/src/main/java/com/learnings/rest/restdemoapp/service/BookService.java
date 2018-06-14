@@ -43,4 +43,9 @@ public class BookService {
 			logger.info("GetBook - No Object Found");
 */		return b;
 	}
+	public Book deleteBook(Long id) {
+		System.out.println("Book Service - Delete Book for Id - "+id);
+		Book b = books.remove(id);
+		return b;
+	}
 }
