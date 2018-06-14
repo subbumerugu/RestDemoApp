@@ -52,7 +52,11 @@ public class BookResource {
 	@Path("/{bookId}")
 	public Response getBook(@PathParam("bookId") Long id) {
 		Book book = bookService.getBook(id);
-		return Response.status(Status.OK).entity(book).build();
+		if (book != null)
+			return Response.status(Status.OK).entity(book).build();
+		else
+			//System.out.println(book.getAuthor());
+			return Response.status(Status.NO_CONTENT).build();
 		
 	}
 	
@@ -77,7 +81,9 @@ public class BookResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{bookId}")
-	public Response updateBook(@PathParam("bookId") Long id, Book book) {
+	public Response updateBook(@PathParam("bookId") Long id, Book book) throws Exception {
+		if (id != book.getId())
+			throw new Exception("Id Can not be modified");
 		book.setId(id);
 		Book b = bookService.updateBook(book);
 		return Response.status(Status.OK).entity(b).build();
