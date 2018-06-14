@@ -48,4 +48,10 @@ public class BookService {
 		Book b = books.remove(id);
 		return b;
 	}
+	public Book addBook(Book book) {
+		System.out.println("Book Service - Add Book");
+		book.setId(1L+books.size());
+		books.put(book.getId(), book);
+		return book;
+	}
 }
